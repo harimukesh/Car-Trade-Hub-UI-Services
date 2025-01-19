@@ -1,0 +1,25 @@
+<div class="loginForm">
+    <!-- @if(!isLoading){ -->
+
+    <h2> Register </h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" [class.invalid]="isValidField('email')" />
+        @if(isError('email')){
+        <span class="error">*email is required field</span>
+        }
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" [class.invalid]="isValidField('password')" />
+        @if(isError('password')){
+        <span class="error">*password is required field</span>
+        }
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <div class="loginContainer"><span>Or</span><a class="loginbtn" routerLink="/register">Register now!</a></div>
+    </form>
+    <!-- }@else{
+    <div class="loading">
+        <img class="loadingimg" src="https://i.gifer.com/JVX7.gif" alt="loading">
+    </div>
+    } -->
+</div>

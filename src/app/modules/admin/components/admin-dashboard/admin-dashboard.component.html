@@ -1,0 +1,45 @@
+<div class="filter-container">
+    <nav class="header-nav">
+        <div>
+            <select id="brand" class="form-control" (change)="onChangeCity($event)">
+                <option value="" disabled selected>Select city</option>
+                <option *ngFor="let option of listOfCity" [value]="option">{{ option }}</option>
+            </select>
+        </div>
+        <!-- <div>
+            <select id="brand" class="form-control" (change)="onChangePincode($event)">
+                <option value="" disabled selected>Select Pincode</option>
+                <option *ngFor="let option of listOfPincode" [value]="option">{{ option }}</option>
+            </select>
+        </div> -->
+    </nav>
+</div>
+<div class="car-container">
+
+    @for(car of cars;track car.id){
+    <div class="car-card">
+        <div class="image-container">
+            <img [src]="'data:image/jpeg;base64,' +     car.returnedImg" alt="{{car.title}}" class="car-image" />
+        </div>
+        <div class="card-content">
+            <div class="card-header">
+                <div>
+                    <h3 class="car-title">{{car.name}}</h3>
+                    <p class="car-details">• {{car.type}} • {{car.transmission}}</p>
+                </div>
+                <!-- <div class="wishlist-holder" (click)="wishListClick(car.id)">
+                    <img [src]="isCarWishByCustomer(car.id) ? checkedHeartImg : unCheckedHeartImg"
+                        class="wishlist-icon">
+                </div> -->
+            </div>
+            <p class="car-price">₹{{car.price}}</p>
+            <div class="card-actions">
+                <a href="/sellerDetails" class="seller-details">View Seller Details</a>
+            </div>
+        </div>
+        <div class="location">
+            📍 {{car.city}} {{car.state}}
+        </div>
+    </div>
+    }
+</div>

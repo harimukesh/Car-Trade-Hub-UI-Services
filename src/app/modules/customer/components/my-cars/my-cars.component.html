@@ -1,0 +1,22 @@
+<div class="my-cars-container car-container">
+    @for(car of cars;track car.id){
+    <div class="car-card">
+        <img [src]="'data:image/jpeg;base64,' +     car.returnedImg" alt="{{car.title}}" class="car-image" />
+        <div class="car-details">
+            <div class="car-title-container">
+                <h2 class="car-title">{{car.name}}</h2>
+                <img [src]="deleteIcon" (click)="deleteMyCar(car.id)" class="trash-icon">
+            </div>
+            <p class="car-description">{{car.description}}</p>
+            <hr />
+            <p class="car-info">
+                Price:<strong> ${{car.price}} - </strong>
+                Color:<strong> {{car.color}} - </strong>
+                Transmission:<strong> {{car.transmission}} - </strong>
+                Type:<strong> {{car.type}} - </strong>
+                Year:<strong> {{car.year}} </strong>
+            </p>
+        </div>
+    </div>
+    }
+</div>

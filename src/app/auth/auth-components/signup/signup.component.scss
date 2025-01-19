@@ -1,0 +1,109 @@
+.signupForm {
+    min-height: 350px;
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.signupForm h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.signupForm label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.signupForm input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease;
+}
+
+.signupForm input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.signupForm input.active-class {
+    border-color: #ccc;
+}
+
+.signupForm input.inactive-class {
+    border-color: rgb(205, 22, 22);
+    margin-bottom: 0px;
+}
+
+.signupForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signupForm button:hover {
+    background-color: #0056b3;
+}
+
+.signupForm button:active {
+    background-color: #003d80;
+}
+
+.signupForm h2 {
+    text-align: center;
+    font-size: 26px;
+    color: #000;
+    margin-top: 10px;
+}
+
+.error {
+    margin-bottom: 22px;
+    font-size: 12px;
+}
+
+.signupForm span.active-class {
+    display: none;
+}
+
+.signupForm span.inactive-class {
+    display: block;
+    color: red;
+}
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    gap: 20px;
+}
+
+
+
+// .loadingimg {
+//     display: block;
+//     margin: 0 auto;
+//     opacity: 0.5;
+
+// }

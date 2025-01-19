@@ -1,0 +1,35 @@
+<div class="signupForm">
+    <!-- @if(!isLoading){ -->
+
+    <h2> Register </h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <label for="username">Username</label>
+        <input id="username" formControlName="name"
+            [ngClass]="isValidField('name') ? 'inactive-class' :'active-class' " />
+        <div class="error"><span [ngClass]="isError('name') ? 'inactive-class' :'active-class' ">*username is
+                required field</span></div>
+        <label for="email">Email</label>
+        <input id="email" formControlName="email"
+            [ngClass]="isValidField('email') ? 'inactive-class' :'active-class' " />
+        <div class="error"><span [ngClass]="isError('email') ? 'inactive-class' :'active-class' ">*email is required
+                field</span></div>
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password"
+            [ngClass]="isValidField('password') ? 'inactive-class' :'active-class' " />
+        <div class="error"><span [ngClass]="isError('password') ? 'inactive-class' :'active-class' ">*password is
+                required field</span></div>
+        <label for="password">Confirm Password</label>
+        <input id="password" type="password" formControlName="confirmPassword"
+            [ngClass]="isValidField('confirmPassword') ? 'inactive-class' :'active-class' ">
+        <div class="error"><span [ngClass]="isError('confirmPassword') ? 'inactive-class' :'active-class' ">*Confirm
+                password is required field</span></div>
+
+        <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        <div class="loginContainer"><span>Or</span><a class="loginbtn" routerLink="/login">Login</a></div>
+    </form>
+    <!-- }@else{
+    <div class="loading">
+        <img class="loadingimg" src="https://i.gifer.com/JVX7.gif" alt="loading">
+    </div>
+    } -->
+</div>
