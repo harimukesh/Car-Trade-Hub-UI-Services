@@ -1,0 +1,26 @@
+<div class="my-bids-container">
+    <table>
+        <thead>
+            <tr>
+                <th style="font-weight: bolder; color: #003973">Car Name</th>
+                <th style="font-weight: bolder; color: #003973">Car Brand</th>
+                <th style="font-weight: bolder; color: #003973">Seller Name</th>
+                <th style="font-weight: bolder; color: #003973">Price</th>
+                <th style="font-weight: bolder; color: #003973">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bid of bids">
+                <td>{{ bid.carName }}</td>
+                <td>{{ bid.carBrand }}</td>
+                <td>{{ bid.sellerName }}</td>
+                <td>{{ bid.price }}</td>
+                <td
+                    [style]="{color : bid.bidStatus === 'APPROVED' ? 'Green' : bid.bidStatus === 'PENDING' ? 'blue' : 'red'}">
+                    {{ bid.bidStatus }}
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,16 +1,11 @@
-<div class="my-cars-container car-container">
-    @for(car of cars;track car.id){
+@if(car){
+<div class="car-container">
     <div class="car-card">
         <img [src]="'data:image/jpeg;base64,' +     car.returnedImg" alt="{{car.title}}" class="car-image" />
         <div class="car-details">
             <div class="car-title-container">
                 <div>
                     <h2 class="car-title">{{car.name}}</h2>
-                </div>
-                <div class="menu-icons">
-                    <img [src]="bidIcon" (click)="manageBid(car.id)" class="bid-icon">
-                    <img [src]="editIcon" (click)="editMyCar(car.id)" class="edit-icon">
-                    <img [src]="deleteIcon" (click)="deleteMyCar(car.id)" class="trash-icon">
                 </div>
             </div>
             <p class="car-description">{{car.description}}</p>
@@ -24,5 +19,16 @@
             </p>
         </div>
     </div>
-    }
 </div>
+<div>
+    <div class="car-bid-container">
+        <div>
+            <form [formGroup]="bidForm" class="car-bid-panel">
+                <label>Your Bid :</label>
+                <input type="number" formControlName="price" class="form-control" />
+                <button class="btn btn-primary submit-button" (click)="onBid(bidForm.value)">Bid</button>
+            </form>
+        </div>
+    </div>
+</div>
+}

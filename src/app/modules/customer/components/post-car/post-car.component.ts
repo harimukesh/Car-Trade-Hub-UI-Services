@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { StorageService } from '../../../../auth/services/storage/storage.service';
 import { ToastService } from '../../../../auth/services/toast/toast.service';
 import { state } from '@angular/animations';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-post-car',
@@ -22,13 +23,19 @@ export class PostCarComponent {
   listOfColor = ['Red', 'white', 'Blue', 'Black', 'Orange', 'Grey', 'Silver', 'Green', 'Yellow', 'Purple', 'Brown', 'Pink'];
   postCarForm!: FormGroup;
   selectedBrand: string = '';
+  selectedCar: any;
   imagePreview: string | ArrayBuffer | null = 'https://as2.ftcdn.net/v2/jpg/11/46/60/07/1000_F_1146600786_ttuIazwHxmp5BsrfQs2P7pziqynpvQhD.jpg';
   selectedFile!: File | null;
 
-  constructor(private fb: FormBuilder, private customerService: CustomerService, private router: Router, private toastService: ToastService,) { }
+  constructor(private fb: FormBuilder, private customerService: CustomerService, private router: Router, private toastService: ToastService, private location: Location) { }
 
 
   ngOnInit() {
+
+    const data = this.location.getState() as any;
+    this.selectedCar = data.carData
+
+
 
     this.postCarForm = this.fb.group({
       brand: ["", [Validators.required, Validators.minLength(1)]],
@@ -44,12 +51,14 @@ export class PostCarComponent {
       city: [null, [Validators.required]],
       location: [null, [Validators.required]]
     });
+
+    if (this.selectedCar) this.postCarForm.patchValue(this.selectedCar)
   }
 
 
   onPostCar() {
     console.log(this.postCarForm?.value);
-    const formData = new FormData();
+    const formData: FormData = new FormData();
     formData.append('brand', this.postCarForm?.value.brand);
     formData.append('name', this.postCarForm?.value.name);
     formData.append('year', this.postCarForm?.value.year);
@@ -63,18 +72,30 @@ export class PostCarComponent {
     formData.append('location', this.postCarForm?.value.location);
     formData.append('state', this.postCarForm?.value.state);
     formData.append('userId', StorageService.getUserId());
-    if (this.selectedFile) {
-      formData.append('img', this.selectedFile);
+
+    if (this.selectedCar) {
+      formData.append('img', this.selectedFile ?? null as any);
+      this.customerService.updateSelectedCarDetails(this.selectedCar.id, formData).subscribe(res => {
+        this.toastService.show('Car Updated Successfully', 'Dismiss');
+        this.router.navigate(['/customer/dashboard']);
+      }, (error) => {
+        this.toastService.show('Something went wrong', 'Dismiss');
+        console.log(error);
+      });
+    } else {
+      if (this.selectedFile) {
+        formData.append('img', this.selectedFile);
+      }
+      console.log(formData);
+      this.customerService.postCar(formData).subscribe((response) => {
+        console.log(response);
+        this.toastService.show('Car Posted Successfully', 'Dismiss');
+        this.router.navigate(['/customer/dashboard']);
+      }, (error) => {
+        this.toastService.show('Something went wrong', 'Dismiss');
+        console.log(error);
+      });
     }
-    console.log(formData);
-    this.customerService.postCar(formData).subscribe((response) => {
-      console.log(response);
-      this.toastService.show('Car Posted Successfully', 'Dismiss');
-      this.router.navigate(['/customer/dashboard']);
-    }, (error) => {
-      this.toastService.show('Something went wrong', 'Dismiss');
-      console.log(error);
-    });
   }
 
   onFileSelected(event: any): void {

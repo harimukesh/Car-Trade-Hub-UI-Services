@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #c5c5c5;
 }
 
 .car-container {
@@ -13,7 +13,7 @@ body {
 
 .car-card {
     display: flex;
-    background-color: #fff;
+    background-color: #fffefe;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
@@ -22,14 +22,12 @@ body {
 }
 
 .edit-icon,
-.trash-icon,
-.bid-icon {
+.trash-icon {
     display: none;
 }
 
 .car-card:hover .edit-icon,
-.car-card:hover .trash-icon,
-.car-card:hover .bid-icon {
+.car-card:hover .trash-icon {
     display: block;
     opacity: 0.6;
     cursor: pointer;
@@ -87,13 +85,6 @@ hr {
     height: 15px;
 }
 
-.bid-icon {
-    margin-right: 20px;
-    width: 20px;
-    height: 20px;
-    color: grey;
-}
-
 
 .trash-icon {
     width: 15px;
@@ -102,4 +93,52 @@ hr {
 
 .menu-icons {
     display: flex;
+}
+
+.car-bid-container {
+    margin: auto;
+    width: 800px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.car-bid-panel {
+    width: 800px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 20px;
+}
+
+.form-control {
+    width: 60%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.submit-button {
+    width: 15%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.submit-button:active {
+    background-color: #003d80;
 }

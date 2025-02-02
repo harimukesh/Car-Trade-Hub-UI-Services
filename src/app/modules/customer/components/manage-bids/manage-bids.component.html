@@ -1,0 +1,34 @@
+<div class="my-bids-container">
+    <table>
+        <thead>
+            <tr>
+                <th style="font-weight: bolder; color: #003973">Car Name</th>
+                <th style="font-weight: bolder; color: #003973">Car Brand</th>
+                <th style="font-weight: bolder; color: #003973">Seller Name</th>
+                <th style="font-weight: bolder; color: #003973">Price</th>
+                <th style="font-weight: bolder; color: #003973">Status</th>
+                <th style="font-weight: bolder; color: #003973">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bid of bids">
+                <td>{{ bid.carName }}</td>
+                <td>{{ bid.carBrand }}</td>
+                <td>{{ bid.sellerName }}</td>
+                <td>{{ bid.price }}</td>
+                <td
+                    [style]="{color : bid.bidStatus === 'APPROVED' ? 'Green' : bid.bidStatus === 'PENDING' ? 'blue' : 'red'}">
+                    {{ bid.bidStatus }}
+                </td>
+                <td>
+                    <span *ngIf="bid.bidStatus === 'PENDING'" class="action-buttons">
+                        <button (click)="changeBidAction(bid.id,'Approve')" class="action-button"
+                            [style]="{color: 'green'}">Approve</button>
+                        <button (click)="changeBidAction(bid.id,'Reject')" class="action-button"
+                            [style]="{color: 'red'}">Reject</button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

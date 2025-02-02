@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../../../../auth/services/storage/storage.service';
+import { Router } from '@angular/router';
+import { CustomerRoutingModule } from '../../customer-routing.module';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -19,7 +21,7 @@ export class CustomerDashboardComponent {
   wishList: any = []
   unCheckedHeartImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNNIL_24u_OSFQvaRC_zM_24_-GJ9lkgTPIOtkNPOXt4oVaPOPiHSxVlsIY6-GeJEN7Ng&usqp=CAU";
   checkedHeartImg = "https://banner2.cleanpng.com/20180703/uco/kisspng-computer-icons-clip-art-worship-5b3b843f293b88.5229754215306271351689.jpg";
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit() {
     this.getCarsDetails();
@@ -62,6 +64,11 @@ export class CustomerDashboardComponent {
 
   wishListClick(carId: any) {
     //this.wishListImg = this.checkedHeartImg;
+  }
+
+  proceedToBid(carId: string) {
+    console.log(carId)
+    this.router.navigate([`/customer/car/${carId}/book`])
   }
 
 }

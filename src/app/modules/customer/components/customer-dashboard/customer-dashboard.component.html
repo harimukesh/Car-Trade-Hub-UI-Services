@@ -34,7 +34,7 @@
             </div>
             <p class="car-price">₹{{car.price}}</p>
             <div class="card-actions">
-                <a href="/sellerDetails" class="seller-details">View Seller Details</a>
+                <a class="seller-details" (click)="proceedToBid(car.id)">Proceed to Bid</a>
             </div>
         </div>
         <div class="location">

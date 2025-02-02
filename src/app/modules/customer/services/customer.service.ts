@@ -44,6 +44,42 @@ export class CustomerService {
     })
   }
 
+  updateSelectedCarDetails(id: string, formData: any) {
+    return this.http.put(BASE_URL + `/car/${id}`, formData, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getSelectedCarDetails(id: string) {
+    return this.http.get(BASE_URL + `/car/${id}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  bidACar(bidDetails: any) {
+    return this.http.post(BASE_URL + `/car/bid`, bidDetails, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getMyBids(id: string) {
+    return this.http.get(BASE_URL + `/car/bids/${id}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  changeBidStatus(bidId: string, status: string) {
+    return this.http.get(BASE_URL + `/car/bid/${bidId}/${status}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getBidByCarId(carId: string) {
+    return this.http.get(BASE_URL + `/car/${carId}/bids`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   getWishList(userId: string) {
     return this.http.get(BASE_URL + `/cars/my-wishlist/${userId}`, {
       headers: this.createAuthorizationHeader()
